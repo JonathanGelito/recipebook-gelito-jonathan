@@ -1,0 +1,22 @@
+{% extends 'ledger/base_ledger.html' %}
+{% load static %}
+
+
+{% block title %}Recipe 1
+
+
+{% endblock %}
+
+
+
+
+
+{% block content %}
+{{ name }}
+    <ul>
+        {% for ingredient in ingredients %}
+        <li> {{ ingredient.quantity}} {{ ingredient.name  }}</li>
+        {% endfor %}
+    </ul>
+    <a href="{{ recipe.link }}">View Recipe</a>  
+{% endblock %}
