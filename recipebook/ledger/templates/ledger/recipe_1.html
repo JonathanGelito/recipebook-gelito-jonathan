@@ -18,5 +18,7 @@
         <li> {{ ingredient.quantity}} {{ ingredient.name  }}</li>
         {% endfor %}
     </ul>
-    <a href="{{ recipe.link }}">View Recipe</a>  
+    <a href="/ledger{{ link }}">
+                <button type="button">View Recipe</button>
+    </a>  <br>
 {% endblock %}

@@ -73,7 +73,7 @@ def recipe_list(request):
         }
     ]
 }
-    return render(request, 'ledger/recipes_list.html', ctx, )
+    return render(request, 'ledger/recipes_list.html', ctx)
 
 def recipe_redirect(request):
     return redirect()
