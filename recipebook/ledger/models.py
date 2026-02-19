@@ -51,9 +51,11 @@ class Recipe(models.Model):
 class RecipeIngredient(models.Model):
 
     num_ingredients=models.CharField(max_length=50)
+
     name_ingredient=models.ForeignKey(Ingredient, 
                                 on_delete=models.CASCADE, 
                                 related_name="ingredients")
+    
     name_recipe=models.ForeignKey(Recipe, 
                                 on_delete=models.CASCADE, 
                                 related_name="recipes")
@@ -64,4 +66,4 @@ class RecipeIngredient(models.Model):
         verbose_name_plural = 'recipe_ingredients' 
     
     def get_absolute_url(self):
-        return reverse("recipeingredient_detial", args=[str(self.name)])
+        return reverse("recipeingredient_detail", args=[str(self.name)])
