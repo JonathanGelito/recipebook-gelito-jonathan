@@ -20,7 +20,7 @@ from .views import *
 
 urlpatterns = [
     path('', index, name='index'),
-    path('recipes/list', RecipeView.as_view(), name='recipes'),
+    path('recipes/list', RecipeView.as_view(), name='recipes_list'),
     path('recipe/<int:pk>', RecipeView.as_view(), name="recipe"),
     
 

@@ -18,3 +18,31 @@ from django.contrib import admin
 
 
 # Register your models here.
+
+from .models import Recipe, RecipeIngredient, Ingredient
+
+
+class RecipeAdmin(admin.ModelAdmin):
+    model = Recipe
+
+class RecipeIngredientAdmin(admin.ModelAdmin):
+    model = RecipeIngredient
+
+    search_fields  = ('name_ingredients', )
+
+    fieldsets = [
+
+        ('Details', {
+            'fields': [
+                'num_ingredient', 'name_recipe'
+            ]
+        }),
+    ]
+
+class IngredientAdmin(admin.ModelAdmin):
+    model = Ingredient
+
+
+admin.site.register(Recipe, RecipeAdmin)
+admin.site.register(RecipeIngredient, RecipeIngredientAdmin)
+admin.site.register(Ingredient, IngredientAdmin)

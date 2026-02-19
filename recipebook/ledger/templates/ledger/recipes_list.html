@@ -4,21 +4,13 @@
 {% load static %}
 
 
-{% block title %}Recipe 2
+{% block title %}Recipes
 
 
 {% endblock %}
 
 {% block content %}
-{% for recipe in recipes %}
-{{ recipe.name }}
-    <ul>
-        {% for ingredient in recipe.ingredients %}
-        <li> {{ ingredient.quantity}} {{ ingredient.name  }}</li>
-        {% endfor %}
-    </ul>
-    <a href="/ledger{{ recipe.link }}">
-                <button type="button">View Recipe</button>
-    </a>  <br><br>
+{% for recipe in object_list %}
+    {{ recipe.name }}
 {% endfor %}
 {% endblock %}
