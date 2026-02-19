@@ -26,6 +26,13 @@ class Ingredient(models.Model):
 
     def __str__(self):
         return self.name
+    def get_absolute_url(self):
+        return reverse("ingredient_detail", args=[str(self.name)])
+    
+    class Meta:
+        ordering = ['name']
+        verbose_name = 'ingredient'
+        verbose_name_plural = 'ingredients'
     
 
 class Recipe(models.Model):
@@ -33,14 +40,28 @@ class Recipe(models.Model):
 
     def __str__(self):
         return self.name
+    def get_absolute_url(self):
+        return reverse("recipeingredient_list", args=[str(self.name)])
+    
+    class Meta:
+        ordering = ['name']
+        verbose_name = 'recipe'
+        verbose_name_plural = 'recipes'
 
 class RecipeIngredient(models.Model):
 
     num_ingredients=models.DecimalField()
     name_ingredient=models.ForeignKey(Ingredient, 
                                 on_delete=models.CASCADE, 
-                                related_name="tasks")
+                                related_name="ingredients")
     name_recipe=models.ForeignKey(Recipe, 
                                 on_delete=models.CASCADE, 
-                                related_name="tasks")
-    def 
+                                related_name="recipes")
+    
+    class Meta:
+        ordering = ['recipe']
+        verbose_name = 'task'
+        verbose_name_plural = 'tasks' 
+    
+    def get_absolute_url(self):
+        return reverse("recipeingredient_detial", args=[str(self.name)])
