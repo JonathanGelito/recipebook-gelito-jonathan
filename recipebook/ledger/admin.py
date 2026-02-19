@@ -22,10 +22,10 @@ from django.contrib import admin
 from .models import Recipe, RecipeIngredient, Ingredient
 
 
-class RecipeAdmin(admin.ModelAdmin):
-    model = Recipe
 
-class RecipeIngredientAdmin(admin.ModelAdmin):
+    
+
+class RecipeIngredientAdmin(admin.TabularInline):
     model = RecipeIngredient
 
     search_fields  = ('name_ingredients', )
@@ -39,10 +39,13 @@ class RecipeIngredientAdmin(admin.ModelAdmin):
         }),
     ]
 
+class RecipeAdmin(admin.ModelAdmin):
+    model = Recipe
+    inlines = [RecipeIngredientAdmin,]
+
 class IngredientAdmin(admin.ModelAdmin):
     model = Ingredient
 
 
 admin.site.register(Recipe, RecipeAdmin)
-admin.site.register(RecipeIngredient, RecipeIngredientAdmin)
 admin.site.register(Ingredient, IngredientAdmin)
