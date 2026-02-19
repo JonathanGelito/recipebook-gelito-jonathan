@@ -15,5 +15,32 @@
 # of my program.
 
 from django.db import models
+from  datetime import datetime
+from django.urls import reverse
+
 
 # Create your models here.
+
+class Ingredient(models.Model):
+    name=models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
+    
+
+class Recipe(models.Model):
+    name=models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
+
+class RecipeIngredient(models.Model):
+
+    num_ingredients=models.DecimalField()
+    name_ingredient=models.ForeignKey(Ingredient, 
+                                on_delete=models.CASCADE, 
+                                related_name="tasks")
+    name_recipe=models.ForeignKey(Recipe, 
+                                on_delete=models.CASCADE, 
+                                related_name="tasks")
+    def 
