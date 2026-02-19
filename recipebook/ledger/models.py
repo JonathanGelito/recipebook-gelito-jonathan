@@ -50,7 +50,7 @@ class Recipe(models.Model):
 
 class RecipeIngredient(models.Model):
 
-    num_ingredients=models.DecimalField()
+    num_ingredients=models.CharField(max_length=50)
     name_ingredient=models.ForeignKey(Ingredient, 
                                 on_delete=models.CASCADE, 
                                 related_name="ingredients")
@@ -59,9 +59,9 @@ class RecipeIngredient(models.Model):
                                 related_name="recipes")
     
     class Meta:
-        ordering = ['recipe']
-        verbose_name = 'task'
-        verbose_name_plural = 'tasks' 
+        ordering = ['name_ingredient']
+        verbose_name = 'recipe_ingredient'
+        verbose_name_plural = 'recipe_ingredients' 
     
     def get_absolute_url(self):
         return reverse("recipeingredient_detial", args=[str(self.name)])

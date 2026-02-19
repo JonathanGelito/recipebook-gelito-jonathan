@@ -34,6 +34,6 @@ from django.contrib import admin
 from django.urls import include, path
 
 urlpatterns = [
-    path('', include('ledger.urls', namespace="ledger")),   
+    path('', include('ledger.urls', namespace='')),   
     path('admin/', admin.site.urls),
 ]

@@ -15,8 +15,13 @@
 # of my program.
 
 from django.shortcuts import render, redirect
-
+from django.views.generic import FormView
 from django.http import HttpResponse
+
+from .models import Recipe, RecipeIngredient, Ingredient
+
+from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
 
 def index(request):
     return HttpResponse('Hello World! This came from the index view')
@@ -159,3 +164,17 @@ def recipe_2(request):
     "link": "/recipe/2"
 }
     return render(request, "ledger/recipe_2.html", ctx)
+
+
+class RecipeView(ListView):
+    model = Recipe
+    template_name = 'ledger/recipes_list.html' 
+
+class RecipeIngredientView(DetailView):
+    model = RecipeIngredient
+    template_name = 'ledger/recipes_detail.html' 
+
+class IngredientView(DetailView):
+    model = Ingredient
+    template_name = 'recipes_detail.html' 
+
