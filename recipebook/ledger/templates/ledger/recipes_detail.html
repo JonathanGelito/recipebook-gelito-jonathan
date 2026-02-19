@@ -15,10 +15,11 @@
 {{ recipe.name }}
     <ul>
         {% for ingredient in ingredients %}
-        <li> {{ ingredient.quantity}} {{ ingredient.name }}</li>
+        <li> {{ ingredient.num_ingredients }} {{ ingredient.name_ingredient.name }} </li>
         {% endfor %}
     </ul>
-    <a href="{{ link }}">
+    <a href="{% url 'ledger:recipe' pk=recipe.pk %}">
                 <button type="button">View Recipe</button>
     </a>  <br>
 {% endblock %}
+

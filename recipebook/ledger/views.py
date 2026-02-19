@@ -23,6 +23,9 @@ from .models import Recipe, RecipeIngredient, Ingredient
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 
+
+ingredients=Ingredient.objects.all()
+
 def index(request):
     return HttpResponse('Hello World! This came from the index view')
 
@@ -46,5 +49,13 @@ class RecipeListView(ListView):
 class RecipeDetailView(DetailView):
     model = Recipe
     template_name = 'ledger/recipes_detail.html' 
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        recipe = self.object
+        # Get all ingredients for this recipe with their specific amount
+        context['ingredients'] = RecipeIngredient.objects.filter(name_recipe=recipe)
+        print(context)
+        return context
 
 
