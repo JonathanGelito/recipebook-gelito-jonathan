@@ -34,7 +34,7 @@ class RecipeIngredientAdmin(admin.ModelAdmin):
 
         ('Details', {
             'fields': [
-                'num_ingredient', 'name_recipe'
+                ('num_ingredients'),'name_ingredient', 'name_recipe'
             ]
         }),
     ]

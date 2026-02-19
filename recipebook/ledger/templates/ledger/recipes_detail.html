@@ -12,13 +12,13 @@
 
 
 {% block content %}
-{{ name }}
+{{ recipe.name }}
     <ul>
         {% for ingredient in ingredients %}
-        <li> {{ ingredient.quantity}} {{ ingredient.name  }}</li>
+        <li> {{ ingredient.quantity}} {{ ingredient.name }}</li>
         {% endfor %}
     </ul>
-    <a href="/ledger{{ link }}">
+    <a href="{{ link }}">
                 <button type="button">View Recipe</button>
     </a>  <br>
 {% endblock %}

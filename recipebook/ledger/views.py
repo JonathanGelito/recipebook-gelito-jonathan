@@ -28,16 +28,23 @@ def index(request):
 
 
 
+def recipe_detail(request, id):
+
+    recipe = Recipe.objects.get(pk=id)
+
+    return render(request, 'ledger/recipe_detail.html', {
+        "recipe": recipe, 
+    })
 
 
 
 
-class RecipeView(ListView):
+class RecipeListView(ListView):
     model = Recipe
     template_name = 'ledger/recipes_list.html' 
 
-class RecipeIngredientView(DetailView):
-    model = RecipeIngredient
+class RecipeDetailView(DetailView):
+    model = Recipe
     template_name = 'ledger/recipes_detail.html' 
 
 

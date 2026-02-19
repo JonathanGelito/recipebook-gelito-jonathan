@@ -20,8 +20,8 @@ from .views import *
 
 urlpatterns = [
     path('', index, name='index'),
-    path('recipes/list', RecipeView.as_view(), name='recipes_list'),
-    path('recipe/<int:pk>', RecipeView.as_view(), name="recipe"),
+    path('recipes/list', RecipeListView.as_view(), name='recipes'),
+    path('recipe/<int:pk>/', RecipeDetailView.as_view(), name='recipe'),
     
 
 

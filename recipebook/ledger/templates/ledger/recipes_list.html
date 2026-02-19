@@ -10,7 +10,16 @@
 {% endblock %}
 
 {% block content %}
+
+<ul>
+
 {% for recipe in object_list %}
-    {{ recipe.name }}
+    <li>
+        <a href="{% url 'ledger:recipe' pk=recipe.pk %}">
+        {{ recipe.name }}
+        </a>
+    </li>
 {% endfor %}
+
+</ul>
 {% endblock %}

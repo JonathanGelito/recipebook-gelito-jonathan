@@ -41,7 +41,7 @@ class Recipe(models.Model):
     def __str__(self):
         return self.name
     def get_absolute_url(self):
-        return reverse("recipeingredient_list", args=[str(self.name)])
+        return reverse("recipe_detail", args=[str(self.name)])
     
     class Meta:
         ordering = ['name']
