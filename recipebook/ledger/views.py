@@ -27,14 +27,12 @@ from django.views.generic.detail import DetailView
 
 ingredients = Ingredient.objects.all()
 
-@login_required
+@login_required(login_url="accounts/")
 def recipe_detail(request, id):
 
     recipe = Recipe.objects.get(pk=id)
 
     recipe_author = Recipe.objects.get(pk=id).author()
-
-
 
     return render(request, 'ledger/recipe_detail.html', {
         "recipe": recipe,
