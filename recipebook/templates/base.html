@@ -11,10 +11,10 @@
     {% if user.is_authenticated %}
             <form method="post" action="{% url 'logout' %}">
                 {% csrf_token %}
-                <button type="submit">Logout</button>
+                <button type="submit" href="{{ login.url }}">Logout</button>
             </form>
         {% else %}
-            <a href="{% url 'login' %}">Login</a>
+            <a href="{% url 'login' %}" href=''>Login</a>
     {% endif %}
 </header>
 <hr>
@@ -26,7 +26,5 @@
         {% block content %}{% endblock %}
     </div>
     {% block scripts %}{% endblock %}
-
-     <a href="{% url 'login' %}"> Login </a>
 </body>
 </html>

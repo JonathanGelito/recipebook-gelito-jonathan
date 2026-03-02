@@ -3,7 +3,7 @@
     <form method="POST" action="{ url 'logout' }">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type = "button"> Logout  </button>
+        <button type = "button" href="{% url 'login' %}"> Logout  </button>
     </form>
         
 
