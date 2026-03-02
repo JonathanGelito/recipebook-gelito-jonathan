@@ -32,16 +32,12 @@ from django.contrib.auth.models import User
 
 ingredients = Ingredient.objects.all()
 
-@login_required(login_url="accounts/")
 def recipe_detail(request, id):
 
     recipe = Recipe.objects.get(pk=id)
 
-    recipe_author = Recipe.objects.get(pk=id).author()
-
     return render(request, 'ledger/recipe_detail.html', {
         "recipe": recipe,
-        "author": recipe_author,
     })
 
 
@@ -49,10 +45,10 @@ class RecipeListView(ListView):
     model = Recipe
     template_name = "ledger/recipes_list.html"
 
-
-class RecipeDetailView(DetailView):
+class RecipeDetailView(LoginRequiredMixin,DetailView):
     model = Recipe
     template_name = "ledger/recipes_detail.html"
+    redirect_field_name = 'registration/login.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

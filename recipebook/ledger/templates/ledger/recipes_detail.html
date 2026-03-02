@@ -1,8 +1,9 @@
+
 {% extends 'ledger/base_ledger.html' %}
 {% load static %}
 
 
-{% block title %}Recipe 1
+{% block title %}Recipe 
 
 
 {% endblock %}
@@ -12,10 +13,11 @@
 
 
 {% block content %}
+{{ block.super }}
 {{ recipe.name }}
-{{ author.name }}
-{{ author.created_on}}
-{{ author.updated_on}}
+{{ recipe.author.name }}
+{{ recipe.created_on}}
+{{ recipe.updated_on}}
 
     <ul>
         {% for ingredient in ingredients %}

@@ -1,20 +1,19 @@
-<!-- taskapp/templates/base.html -->
-{% extends 'base.html ' %}
+{% extends 'base.html' %}
 {% load static %}
 
-    <header>
-        <h1> Recipe Book </h1>      
-        {% if user.is_authenticated %}
-                <form method="post" action="{% url 'logout' %}">
-                    {% csrf_token %}
-                    <button type="submit" href="{{ login.url }}">Logout</button>
-                </form>
-            {% else %}
-                <a href="{% url 'login' %}" href=''>Login</a>
-        {% endif %}
-    </header>
+{% block title %}Recipe Book{% endblock %}
 
-    <h2>{% block page_title %}{% endblock %}</h2>
+{% block content %}
+<header>
+    <h1>Recipe Book</h1>
 
-
-{% block title %} Recipe Book {% endblock %}
+    {% if user.is_authenticated %}
+        <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit">Logout</button>
+        </form>
+    {% else %}
+        <a href="{% url 'login' %}">Login</a>
+    {% endif %}
+</header>
+{% endblock %}
