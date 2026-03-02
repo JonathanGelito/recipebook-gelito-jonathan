@@ -13,6 +13,10 @@
 
 {% block content %}
 {{ recipe.name }}
+{{ author.name }}
+{{ author.created_on}}
+{{ author.updated_on}}
+
     <ul>
         {% for ingredient in ingredients %}
         <li> {{ ingredient.num_ingredients }} {{ ingredient.name_ingredient.name }} </li>

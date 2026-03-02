@@ -19,10 +19,15 @@ from django.views.generic import FormView
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 
+from .forms import Taskforms
 from .models import Recipe, RecipeIngredient, Ingredient
 
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
+from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.models import User
+
 
 
 ingredients = Ingredient.objects.all()
@@ -36,6 +41,7 @@ def recipe_detail(request, id):
 
     return render(request, 'ledger/recipe_detail.html', {
         "recipe": recipe,
+        "author": recipe_author,
     })
 
 

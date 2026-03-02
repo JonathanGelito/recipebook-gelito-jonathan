@@ -39,9 +39,7 @@ class RecipeIngredientAdmin(admin.TabularInline):
     ]
 
 
-class RecipeAdmin(admin.ModelAdmin):
-    model = Recipe
-    inlines = [RecipeIngredientAdmin,]
+
 
 
 class IngredientAdmin(admin.ModelAdmin):
@@ -50,6 +48,10 @@ class IngredientAdmin(admin.ModelAdmin):
 class ProfileInline(admin.StackedInline):
     model = Profile
     can_delete = False
+
+class RecipeAdmin(admin.ModelAdmin):
+    model = Recipe
+    inlines = [RecipeIngredientAdmin, ProfileInline]
 
 class UserAdmin(BaseUserAdmin):
     inlines = [ProfileInline,]

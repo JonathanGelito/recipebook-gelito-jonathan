@@ -44,7 +44,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=50, default="Unknown")
     short_bio = models.TextField()
-
+    
     class Meta:
         ordering = ['name']
         verbose_name = 'profile'
