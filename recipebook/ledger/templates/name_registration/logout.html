@@ -1,0 +1,11 @@
+{% include 'base.html' %}
+{% block content %}
+    <form method="POST" action="{ url 'logout' }">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type = "button"> Logout  </button>
+    </form>
+        
+
+
+{% endblock %}

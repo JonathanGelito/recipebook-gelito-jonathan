@@ -14,12 +14,14 @@
 # that has been clearly noted with a proper citation in the comments
 # of my program.
 
+from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
+from django.contrib.auth.models import User 
 from django.contrib import admin
 
 
 # Register your models here.
 
-from .models import Recipe, RecipeIngredient, Ingredient
+from .models import Recipe, RecipeIngredient, Ingredient, Profile
 
 
 class RecipeIngredientAdmin(admin.TabularInline):
@@ -45,6 +47,15 @@ class RecipeAdmin(admin.ModelAdmin):
 class IngredientAdmin(admin.ModelAdmin):
     model = Ingredient
 
+class ProfileInline(admin.StackedInline):
+    model = Profile
+    can_delete = False
 
+class UserAdmin(admin.BaseUserAdmin):
+    inlines = [ProfileInline,]
+
+
+admin.site.unregister(User)
+admin.site.register(User, UserAdmin)
 admin.site.register(Recipe, RecipeAdmin)
 admin.site.register(Ingredient, IngredientAdmin)

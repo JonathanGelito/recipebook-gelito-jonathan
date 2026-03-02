@@ -17,6 +17,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic import FormView
 from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 
 from .models import Recipe, RecipeIngredient, Ingredient
 
@@ -26,10 +27,14 @@ from django.views.generic.detail import DetailView
 
 ingredients = Ingredient.objects.all()
 
-
+@login_required
 def recipe_detail(request, id):
 
     recipe = Recipe.objects.get(pk=id)
+
+    recipe_author = Recipe.objects.get(pk=id).author()
+
+
 
     return render(request, 'ledger/recipe_detail.html', {
         "recipe": recipe,
@@ -52,3 +57,4 @@ class RecipeDetailView(DetailView):
             name_recipe=recipe
         )
         return context
+
