@@ -1,4 +1,4 @@
-{% include 'base.html' %}
+{% extends 'base.html' %}
 
 {% block content %}
         <form method="POST">
@@ -6,4 +6,8 @@
             {{ form.as_p }}
             <button type="submit">Login</button>
         </form>
+
+        <br>
+        <a href="/accounts/password_reset/"> Forgot Password</a>
+        </br>
 {% endblock %}      

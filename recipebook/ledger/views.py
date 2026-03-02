@@ -24,6 +24,8 @@ from .models import Recipe, RecipeIngredient, Ingredient
 
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
+from django.contrib.auth.views import LoginView, LogoutView, PasswordResetView
+from django.contrib.auth.views import PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
@@ -57,4 +59,26 @@ class RecipeDetailView(LoginRequiredMixin,DetailView):
             name_recipe=recipe
         )
         return context
+
+class CustomLoginView(LoginView):
+    template_name = "registration/login.html"
+    redirect_authenticated_user = True
+    success_url = "/recipes/list"
+
+class CustomLogoutView(LogoutView):
+    template_name = "registration/logout.html"
+    redirect_authenticated_user = False
+    success_url = "/accounts/login"
+
+class CustomPasswordResetView(PasswordResetView):
+    template_name = "registration/password_reset_form.html"
+
+class CustomPasswordResetDoneView(PasswordResetDoneView):
+    template_name = "registration/password_reset_done.html"
+
+class CustomPasswordResetConfirmView(PasswordResetConfirmView):
+    template_name = "registration/password_reset_confirm.html"
+
+class CustomPasswordResetCompleteView(PasswordResetCompleteView):
+    template_name = "registration/password_reset_complete.html"
 

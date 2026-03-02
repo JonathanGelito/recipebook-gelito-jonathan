@@ -19,8 +19,16 @@ from django.urls import path
 from .views import *
 
 urlpatterns = [
-    path("recipes/list", RecipeListView.as_view(), name='recipes'),
+    path("recipes/list", RecipeListView.as_view(), name='recipeslist'),
     path('recipe/<int:pk>/', RecipeDetailView.as_view(), name='recipe'),
+    path('accounts/login/', CustomLoginView.as_view(), name='login'),
+    path('accounts/logout/', CustomLogoutView.as_view(), name='logout'),
+    path('accounts/password_reset/', CustomPasswordResetView.as_view(), name='reset_password'),
+    path('accounts/password_done/', CustomPasswordResetDoneView.as_view(), name='password_reset_done'),
+    path('accounts/<uidb64>/<token>', CustomPasswordResetConfirmView.as_view(), name='password_reset_confirm'),
+    path('accounts/password_complete/', CustomPasswordResetCompleteView.as_view(), name='password_reset_complete'),
+
+
 
 ]
 
