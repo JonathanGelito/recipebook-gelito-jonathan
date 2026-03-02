@@ -15,7 +15,7 @@
 # of my program.
 
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-from django.contrib.auth.models import User 
+from django.contrib.auth.models import User
 from django.contrib import admin
 
 
@@ -39,18 +39,18 @@ class RecipeIngredientAdmin(admin.TabularInline):
     ]
 
 
-
 class RecipeAdmin(admin.ModelAdmin):
     model = Recipe
     inlines = [RecipeIngredientAdmin,]
 
+
 class IngredientAdmin(admin.ModelAdmin):
     model = Ingredient
+
 
 class ProfileInline(admin.StackedInline):
     model = Profile
     can_delete = False
-
 
 
 class UserAdmin(BaseUserAdmin):

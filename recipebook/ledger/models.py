@@ -20,9 +20,8 @@ from django.urls import reverse
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import User
 from django.utils import timezone
+from django.core.validators import MinLengthValidator
 
-
-# Create your models here.
 
 class Ingredient(models.Model):
     name = models.CharField(max_length=50)
@@ -32,34 +31,39 @@ class Ingredient(models.Model):
 
     def get_absolute_url(self):
         return reverse("ingredient_detail", args=[str(self.name)])
-    
-    
 
     class Meta:
         ordering = ['name']
         verbose_name = 'ingredient'
         verbose_name_plural = 'ingredients'
 
+
 class Profile(models.Model):
+
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=50, default="Unknown")
-    short_bio = models.TextField()
-    
+    short_bio = models.TextField(validators=[MinLengthValidator(
+                                            255,
+                                            'the field must contain '
+                                            'at least 255 characters')
+            ])
+
     class Meta:
         ordering = ['name']
         verbose_name = 'profile'
         verbose_name_plural = 'profiles'
 
+
 class Recipe(models.Model):
     name = models.CharField(max_length=50)
 
-    author = models.ForeignKey(Profile, 
-                               on_delete=models.CASCADE, 
+    author = models.ForeignKey(Profile,
+                               on_delete=models.CASCADE,
                                related_name="recipe")
-    
-    created_on = models.DateTimeField(null=False, 
+
+    created_on = models.DateTimeField(null=False,
                                       auto_now_add=True)
-    
+
     updated_on = models.DateTimeField(null=False, auto_now=True)
 
     def __str__(self):
@@ -93,4 +97,3 @@ class RecipeIngredient(models.Model):
 
     def get_absolute_url(self):
         return reverse("recipeingredient_detail", args=[str(self.name)])
-

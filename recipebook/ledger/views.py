@@ -1,6 +1,6 @@
 # Jonathan II A. Gelito
 # 242043
-# Febrauary 9, 2025
+# March 2, 2025
 
 # I have not discussed the Python language code in my program
 # with anyone other than my instructor or the teaching assistants
@@ -25,14 +25,16 @@ from .models import Recipe, RecipeIngredient, Ingredient
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.contrib.auth.views import LoginView, LogoutView, PasswordResetView
-from django.contrib.auth.views import PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView
+from django.contrib.auth.views import PasswordResetDoneView
+from django.contrib.auth.views import PasswordResetConfirmView
+from django.contrib.auth.views import PasswordResetCompleteView
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 
 
-
 ingredients = Ingredient.objects.all()
+
 
 def recipe_detail(request, id):
 
@@ -47,7 +49,8 @@ class RecipeListView(ListView):
     model = Recipe
     template_name = "ledger/recipes_list.html"
 
-class RecipeDetailView(LoginRequiredMixin,DetailView):
+
+class RecipeDetailView(LoginRequiredMixin, DetailView):
     model = Recipe
     template_name = "ledger/recipes_detail.html"
     redirect_field_name = 'registration/login.html'
@@ -60,25 +63,30 @@ class RecipeDetailView(LoginRequiredMixin,DetailView):
         )
         return context
 
+
 class CustomLoginView(LoginView):
     template_name = "registration/login.html"
     redirect_authenticated_user = True
     success_url = "/recipes/list"
+
 
 class CustomLogoutView(LogoutView):
     template_name = "registration/logout.html"
     redirect_authenticated_user = False
     success_url = "/accounts/login"
 
+
 class CustomPasswordResetView(PasswordResetView):
     template_name = "registration/password_reset_form.html"
+
 
 class CustomPasswordResetDoneView(PasswordResetDoneView):
     template_name = "registration/password_reset_done.html"
 
+
 class CustomPasswordResetConfirmView(PasswordResetConfirmView):
     template_name = "registration/password_reset_confirm.html"
 
+
 class CustomPasswordResetCompleteView(PasswordResetCompleteView):
     template_name = "registration/password_reset_complete.html"
-
