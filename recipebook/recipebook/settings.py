@@ -30,7 +30,6 @@ import os
 
 from django.conf import settings
 from django.conf.urls.static import static
-from .urls import urlpatterns
 
 from pathlib import Path
 
@@ -147,19 +146,15 @@ MEDIA_URL = '/media/'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
+STATIC_URL = '/static/'
+
 STATICFILES_DIRS = [
-BASE_DIR/'static',
+    BASE_DIR / "static"
 ]
 
-
-STATIC_URL = '/static/'
-STATIC_ROOT = [os.path.join(BASE_DIR, 'static')]
-
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 LOGIN_REDIRECT_URL = '/recipes/list'
 
 LOGOUT_REDIRECT_URL = "login"
 
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
-
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
