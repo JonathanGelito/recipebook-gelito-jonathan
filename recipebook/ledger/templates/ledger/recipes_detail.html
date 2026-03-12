@@ -16,9 +16,9 @@
 {{ block.super }}
 {{ recipe.name }}
 {{ recipe.author.name }}
-    {% if object.recipe_image %}
-        <img src="{{ object.recipe_image.url }}" alt="">
-    {% endif %}
+    {% for img in recipe.recipe_image.all %}
+    <img src="{{ img.image.url }}" alt="recipe.recipe_image.short_description">
+    {% endfor %}
     <ul>
         {% for ingredient in ingredients %}
         <li> {{ ingredient.num_ingredients }} {{ ingredient.name_ingredient.name }} </li>
@@ -26,6 +26,9 @@
     </ul>
     <a href="{% url 'ledger:recipe' pk=recipe.pk %}">
                 <button type="button">View Recipe</button>
+    </a>  <br>
+    <a href="{% url 'ledger:recipe_add_image' pk=recipe.pk %}">
+                <button type="button">Add Image</button>
     </a>  <br>
 {% endblock %}
 

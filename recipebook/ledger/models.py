@@ -101,11 +101,11 @@ class RecipeIngredient(models.Model):
 class RecipeImage(models.Model):
     
     image = models.ImageField(upload_to='images/', null=False)
-    short_description = models.TextField(validators=[MinLengthValidator(
-                                            255,
-                                            'the field must contain '
-                                            'at least 255 characters')
-            ])
+    short_description = models.TextField(max_length=255)
     recipe_image = models.ForeignKey(Recipe,
                                     on_delete=models.CASCADE,
                                     related_name="recipe_image")
+    
+    class Meta:
+        verbose_name = 'recipe_pictures'
+        verbose_name_plural = 'recipe_pictures'
