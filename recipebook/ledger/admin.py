@@ -21,7 +21,7 @@ from django.contrib import admin
 
 # Register your models here.
 
-from .models import Recipe, RecipeIngredient, Ingredient, Profile
+from .models import *
 
 
 class RecipeIngredientAdmin(admin.TabularInline):
@@ -37,11 +37,12 @@ class RecipeIngredientAdmin(admin.TabularInline):
             ]
         }),
     ]
-
+class RecipeImageAdmin(admin.StackedInline):
+    model = RecipeImage
 
 class RecipeAdmin(admin.ModelAdmin):
     model = Recipe
-    inlines = [RecipeIngredientAdmin,]
+    inlines = [RecipeIngredientAdmin, RecipeImageAdmin]
 
 
 class IngredientAdmin(admin.ModelAdmin):

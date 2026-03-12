@@ -97,3 +97,15 @@ class RecipeIngredient(models.Model):
 
     def get_absolute_url(self):
         return reverse("recipeingredient_detail", args=[str(self.name)])
+
+class RecipeImage(models.Model):
+    
+    image = models.ImageField(upload_to='images/', null=False)
+    short_description = models.TextField(validators=[MinLengthValidator(
+                                            255,
+                                            'the field must contain '
+                                            'at least 255 characters')
+            ])
+    img_recipe = models.ForeignKey(Recipe,
+                                    on_delete=models.CASCADE,
+                                    related_name="recipe_image")

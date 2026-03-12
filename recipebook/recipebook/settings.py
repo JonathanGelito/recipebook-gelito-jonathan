@@ -32,6 +32,11 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
+
+from django.conf import settings
+from django.conf.urls.static import static
+
+
 load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -133,9 +138,16 @@ USE_I18N = True
 
 USE_TZ = True
 
+MEDIA_ROOT = BASE_DIR/'media'
+MEDIA_URL = '/media/'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
+
+STATICFILES_DIRS = [
+BASE_DIR/'static',
+]
+
 
 STATIC_URL = '/static/'
 STATIC_ROOT = [os.path.join(BASE_DIR, 'static')]
@@ -146,3 +158,7 @@ LOGIN_REDIRECT_URL = '/recipes/list'
 LOGOUT_REDIRECT_URL = "login"
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
