@@ -16,7 +16,9 @@
 {{ block.super }}
 {{ recipe.name }}
 {{ recipe.author.name }}
-    {{ recipe.}}
+    {% if object.recipe_image %}
+        <img src="{{ object.recipe_image.url }}" alt="">
+    {% endif %}
     <ul>
         {% for ingredient in ingredients %}
         <li> {{ ingredient.num_ingredients }} {{ ingredient.name_ingredient.name }} </li>

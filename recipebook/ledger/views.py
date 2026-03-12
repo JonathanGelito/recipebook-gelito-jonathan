@@ -19,7 +19,7 @@ from django.views.generic import FormView
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 
-from .forms import Taskforms
+from .forms import RecipeForm
 from .models import Recipe, RecipeIngredient, Ingredient
 
 from django.views.generic.list import ListView
@@ -31,6 +31,8 @@ from django.contrib.auth.views import PasswordResetCompleteView
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
+from django.views.generic.edit import CreateView, UpdateView
+
 
 
 ingredients = Ingredient.objects.all()
@@ -90,3 +92,12 @@ class CustomPasswordResetConfirmView(PasswordResetConfirmView):
 
 class CustomPasswordResetCompleteView(PasswordResetCompleteView):
     template_name = "registration/password_reset_complete.html"
+
+class RecipeAddView(CreateView): 
+    model = Recipe
+    form_class = RecipeForm
+
+class RecipeAddImageView(UpdateView):
+    model = Recipe
+    form_class = RecipeForm 
+    success_url = "recipe/<int:pk>/"

@@ -28,13 +28,16 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 
 import os
 
+from django.conf import settings
+from django.conf.urls.static import static
+from .urls import urlpatterns
+
 from pathlib import Path
 
 from dotenv import load_dotenv
 
 
-from django.conf import settings
-from django.conf.urls.static import static
+
 
 
 load_dotenv()
@@ -158,7 +161,5 @@ LOGIN_REDIRECT_URL = '/recipes/list'
 LOGOUT_REDIRECT_URL = "login"
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
-
-
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -106,6 +106,6 @@ class RecipeImage(models.Model):
                                             'the field must contain '
                                             'at least 255 characters')
             ])
-    img_recipe = models.ForeignKey(Recipe,
+    recipe_image = models.ForeignKey(Recipe,
                                     on_delete=models.CASCADE,
                                     related_name="recipe_image")

@@ -1,6 +1,15 @@
 from django import forms
 
+from .models import Recipe, RecipeIngredient
 
-class Taskforms(forms.Form):
-    name = forms.CharField(label="Username")
-    password = forms.CharField(label="Password")
+class RecipeForm(forms.ModelForm):
+
+    class Meta:
+        model=Recipe
+        fields = '__all__'
+
+        widgets = {
+            'due_date': forms.TextInput(
+                attrs={ 'type': 'datetime-local' }
+            )
+        }
