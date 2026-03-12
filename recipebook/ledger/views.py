@@ -61,11 +61,11 @@ class RecipeDetailView(LoginRequiredMixin, DetailView):
         )
         return context
 
-class RecipeAddView(CreateView): 
+class RecipeAddView(LoginRequiredMixin, CreateView): 
     model = Recipe
     form_class = RecipeForm
 
-class RecipeAddImageView(UpdateView):
+class RecipeAddImageView(LoginRequiredMixin, UpdateView):
     model = Recipe
     form_class = RecipeForm 
     success_url = "recipe/<int:pk>/"
