@@ -2,10 +2,16 @@
 {% load static %}
 
 {% block content %}
+
+{% if 'add_image' in request.path %}
+    <a href="{% url 'ledger:recipe' pk=view.kwargs.pk %}">Back to Recipe</a>
+{% endif %}
+
 <form method="post" enctype="multipart/form-data">
 {% csrf_token %}
 {{ form }}
 <input type="submit" value="Submit">
 </form>
+
 {% endblock %}
 
