@@ -40,7 +40,7 @@ class Ingredient(models.Model):
 
 class Profile(models.Model):
 
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
     name = models.CharField(max_length=50, default="Unknown")
     short_bio = models.TextField(validators=[MinLengthValidator(
                                             255,
